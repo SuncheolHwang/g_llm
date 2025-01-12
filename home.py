@@ -9,16 +9,15 @@ st.set_page_config(
     page_icon="💀",
 )
 
-# with open("./config.yaml") as file:
-#     config = yaml.load(file, Loader=SafeLoader)
+username = list(st.secrets["credentials"]["usernames"].keys())[0]
 
 credentials = {
     "credentials": {
         "usernames": {
-            "suncheol322": {
-                "email": st.secrets["credentials"]["usernames"]["suncheol322"]["email"],
-                "name": st.secrets["credentials"]["usernames"]["suncheol322"]["name"],
-                "password": st.secrets["credentials"]["usernames"]["suncheol322"][
+            username: {
+                "email": st.secrets["credentials"]["usernames"][username]["email"],
+                "name": st.secrets["credentials"]["usernames"][username]["name"],
+                "password": st.secrets["credentials"]["usernames"][username][
                     "password"
                 ],
             }
@@ -56,10 +55,10 @@ except Exception as e:
 if st.session_state["authentication_status"]:
     authenticator.logout()
     st.write(f'Welcome *{st.session_state["name"]}*')
-    st.title("LLM Test")
+    st.title("LLM for Personal Use")
     st.markdown(
         """
-# My LLM Collection
+# 1. Gemini Test
     """
     )
 elif st.session_state["authentication_status"] is False:
