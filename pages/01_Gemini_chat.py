@@ -11,6 +11,7 @@ st.set_page_config(
 
 # Gemini 모델 옵션
 options = [
+    "gemini-2.0-flash-thinking-exp-01-21",
     "gemini-2.0-flash-exp",
 ]
 
@@ -114,6 +115,7 @@ def invoke_chain(question):
     result = chain.invoke(
         {"question": question},
     )
+    print(result.content)
     st.write(result.content)
     save_context(message, result.content)
     save_messages(result.content, "ai")
